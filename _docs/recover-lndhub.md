@@ -14,7 +14,7 @@ Inside your lightning wallet you are going to find on the top right the options 
 Make sure it doesnt end with `.onion` - such wallets are usually hosted on private nodes, such as Umbrel.
 
 ### 2- Bitcoin address
-You will also need to provide a regular bitcoin address in order to receive your withdrawal. Transactions are usually processed monthly, begining of each month, so please wait till a new batch of transactions is done.
+You will also need to provide a regular bitcoin address in order to receive your withdrawal. Transactions are usually processed every 3 months, so please wait till a new batch of transactions is done.
 
 **→ [Recover form here](https://docs.google.com/forms/d/e/1FAIpQLSe8iOgfJPQ-RgN89mJa8QF_zJHOZBOVsfrYXdUBY__-RhSlUg/viewform?usp=sharing)**
 
