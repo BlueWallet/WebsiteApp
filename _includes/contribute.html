@@ -1,0 +1,98 @@
+<div class="uk-section">
+  <div class="uk-container">
+    <div class="uk-margin-large-bottom">
+      <h1 class="uk-heading-primary">Contribute to Bitcoin</h1>
+      <p class="uk-text-lead">BlueWallet is free and open source software. And, one of the most used products in Bitcoin. Self-custody will win, but your contribution really matters. See how you can start contributing today.</p>
+    </div>
+    <div class="contribute-cards uk-child-width-1-4@m uk-child-width-1-2@s uk-grid-small" data-uk-grid data-uk-tab="connect: #contribute-panels">
+      <div class="uk-active">
+        <a href="#" class="contribute-card">
+          <span class="contribute-card-icon" data-uk-icon="icon: file-edit; ratio: 1.8"></span>
+          <h3>Developer</h3>
+          <p>Fix bugs, build features, and get your code merged.</p>
+        </a>
+      </div>
+      <div>
+        <a href="#" class="contribute-card">
+          <span class="contribute-card-icon" data-uk-icon="icon: search; ratio: 1.8"></span>
+          <h3>Tester</h3>
+          <p>Hunt bugs, test PRs, and file clear reports.</p>
+        </a>
+      </div>
+      <div>
+        <a href="#" class="contribute-card">
+          <span class="contribute-card-icon" data-uk-icon="icon: world; ratio: 1.8"></span>
+          <h3>Translator</h3>
+          <p>Help translate BlueWallet into your language.</p>
+        </a>
+      </div>
+      <div>
+        <a href="#" class="contribute-card">
+          <span class="contribute-card-icon" data-uk-icon="icon: pencil; ratio: 1.8"></span>
+          <h3>Content Creator</h3>
+          <p>Write docs and guides that help users understand Bitcoin.</p>
+        </a>
+      </div>
+    </div>
+    <ul id="contribute-panels" class="uk-switcher uk-margin-large-top">
+      <li>
+        <h2 class="uk-h2">Good First Issues & Help Wanted</h2>
+        <p class="uk-text-muted">Great starting points for new contributors, sorted by newest first.</p>
+
+        <div id="good-first-issues">
+          <p class="uk-text-muted">Loading issues...</p>
+        </div>
+
+        <div class="uk-text-center uk-margin-large-top">
+          <a href="https://github.com/BlueWallet/BlueWallet/issues?q=is%3Aissue+state%3Aopen+label%3A%22good+first+issue+%F0%9F%A5%87%22%2C%22help+wanted%22" target="_blank" class="uk-button uk-button-default">View all issues on GitHub</a>
+        </div>
+      </li>
+      <li>
+        <h2 class="uk-h2">Bug Reports</h2>
+        <p class="uk-text-muted">Help find and reproduce bugs to improve BlueWallet.</p>
+
+        <div id="bug-issues">
+          <p class="uk-text-muted">Loading issues...</p>
+        </div>
+
+        <div class="uk-text-center uk-margin-large-top">
+          <a href="https://github.com/BlueWallet/BlueWallet/issues?q=is%3Aissue+state%3Aopen+label%3Abug" target="_blank" class="uk-button uk-button-default">View all bug reports on GitHub</a>
+        </div>
+      </li>
+      <li>
+        <h2 class="uk-h2">Translation status</h2>
+        <p class="uk-text-muted">Percentages reflect translations merged in the BlueWallet app. Contribute on Transifex.</p>
+
+        <div id="translation-languages">
+          <p class="uk-text-muted">Loading translations...</p>
+        </div>
+
+        <div class="uk-text-center uk-margin-large-top">
+          <a href="https://explore.transifex.com/bluewallet/bluewallet/" target="_blank" class="uk-button uk-button-default">Join on Transifex</a>
+        </div>
+      </li>
+      <li>
+        <h2 class="uk-h2">Documentation</h2>
+        <p class="uk-text-muted">Browse our latest guides and help improve them for other users.</p>
+
+        <div id="doc-articles">
+          <div class="uk-grid-small uk-child-width-1-1" data-uk-grid>
+            {% assign latest_docs = site.docs | where_exp: "doc", "doc.url != '/docs/intro/'" | sort: 'date' | reverse %}
+            {% for doc in latest_docs %}
+            <div>
+              <div class="uk-card uk-card-default uk-box-shadow-medium uk-card-hover uk-card-body uk-inline border-radius-medium border-light">
+                <a class="uk-position-cover" href="{{ doc.url }}"></a>
+                <h3 class="uk-card-title uk-margin-small-top uk-margin-small-bottom">{{ doc.title }}</h3>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="uk-text-center uk-margin-large-top">
+          <a href="/docs/" class="uk-button uk-button-default">View all documentation</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
