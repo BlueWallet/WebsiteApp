@@ -1,5 +1,86 @@
 (function () {
+  var REPO_API = 'https://api.github.com/repos/BlueWallet/BlueWallet';
+  var STATS_CACHE_KEY = 'bw_repo_stats';
+  var STATS_CACHE_TTL = 24 * 60 * 60 * 1000;
   var BASE_URL = 'https://api.github.com/repos/BlueWallet/BlueWallet/issues?state=open&per_page=20&sort=created&direction=desc&labels=';
+
+  function formatStatCount(n) {
+    if (n >= 1000000) return Math.floor(n / 1000000) + 'M+';
+    if (n >= 1000) return Math.floor(n / 1000) + 'K+';
+    return String(n);
+  }
+
+  function paginatedCount(path) {
+    return fetch(path + '?per_page=1')
+      .then(function (res) {
+        if (!res.ok) return Promise.reject();
+        var link = res.headers.get('Link');
+        if (link) {
+          var match = link.match(/[?&]page=(\d+)>; rel="last"/);
+          if (match) return parseInt(match[1], 10);
+        }
+        return res.json().then(function (data) { return data.length; });
+      });
+  }
+
+  function renderRepoStats(stats) {
+    var releasesEl = document.getElementById('contribute-stat-releases');
+    var starsEl = document.getElementById('contribute-stat-stars');
+    var contributorsEl = document.getElementById('contribute-stat-contributors');
+    if (!releasesEl && !starsEl && !contributorsEl) return;
+
+    if (releasesEl && stats.releases != null) {
+      releasesEl.textContent = formatStatCount(stats.releases);
+    }
+    if (starsEl && stats.stars != null) {
+      starsEl.textContent = formatStatCount(stats.stars);
+    }
+    if (contributorsEl && stats.contributors != null) {
+      contributorsEl.textContent = formatStatCount(stats.contributors);
+    }
+  }
+
+  function getStatsCache() {
+    try {
+      var raw = JSON.parse(localStorage.getItem(STATS_CACHE_KEY));
+      if (raw && Date.now() - raw.ts < STATS_CACHE_TTL) return raw.data;
+    } catch (e) {}
+    return null;
+  }
+
+  function setStatsCache(data) {
+    try {
+      localStorage.setItem(STATS_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: data }));
+    } catch (e) {}
+  }
+
+  function loadRepoStats() {
+    if (!document.getElementById('contribute-stat-stars')) return;
+
+    var cached = getStatsCache();
+    if (cached) renderRepoStats(cached);
+
+    Promise.all([
+      fetch(REPO_API).then(function (res) { return res.ok ? res.json() : Promise.reject(); }),
+      paginatedCount(REPO_API + '/releases'),
+      paginatedCount(REPO_API + '/contributors')
+    ])
+      .then(function (results) {
+        var stats = {
+          stars: results[0].stargazers_count,
+          releases: results[1],
+          contributors: results[2]
+        };
+        setStatsCache(stats);
+        renderRepoStats(stats);
+      })
+      .catch(function () {
+        if (!cached) return;
+        renderRepoStats(cached);
+      });
+  }
+
+  loadRepoStats();
 
   var feeds = [
     {

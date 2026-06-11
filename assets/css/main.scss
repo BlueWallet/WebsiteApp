@@ -63,9 +63,6 @@
 .section-hero {
 	padding-top: 0;
 }
-.section-power-features {
-	padding-top: 40px;
-}
 .power-features-list {
 	display: flex;
 	flex-direction: column;
@@ -134,9 +131,6 @@
 			justify-content: flex-start;
 		}
 	}
-}
-.section-community {
-	padding-top: 20px;
 }
 .community-grid {
 	display: grid;
@@ -408,6 +402,100 @@
 	color: #ffffff !important;
 	font-weight: bold;
 }
+.contribute-oss {
+	text-align: center;
+	padding: 72px 24px 88px;
+	margin-bottom: 80px;
+	border: none;
+	border-radius: 24px;
+	background: #F5F7FA;
+}
+.contribute-oss-label {
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: #0070FF;
+	margin: 0 0 16px 0;
+}
+.contribute-oss-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	line-height: 1.15;
+	color: #323247;
+	margin: 0 0 20px 0;
+	max-width: 640px;
+	margin-left: auto;
+	margin-right: auto;
+	@media (max-width: 959px) {
+		font-size: 2rem;
+	}
+}
+.contribute-oss-lead {
+	font-size: 1.125rem;
+	line-height: 1.65;
+	color: #6B7990;
+	margin: 0 auto 40px;
+}
+.contribute-oss-actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 12px;
+	margin-bottom: 56px;
+}
+.contribute-oss-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 12px 24px;
+	border: 1px solid #D0D5DD;
+	border-radius: 8px;
+	background: #fff;
+	color: #323247;
+	font-size: 0.9375rem;
+	font-weight: 600;
+	text-decoration: none;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	&:hover {
+		border-color: #0070FF;
+		box-shadow: 0 2px 12px rgba(0, 112, 255, 0.1);
+		color: #323247;
+		text-decoration: none;
+	}
+}
+.contribute-oss-stats {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 16px;
+	max-width: 720px;
+	margin: 0 auto;
+	@media (max-width: 639px) {
+		grid-template-columns: 1fr;
+		max-width: 280px;
+	}
+}
+.contribute-oss-stat {
+	padding: 28px 20px;
+	border: 1px solid #ebecee;
+	border-radius: 12px;
+	background: #fff;
+}
+.contribute-oss-stat-value {
+	font-size: 2rem;
+	font-weight: 700;
+	line-height: 1.1;
+	color: #323247;
+	margin: 0 0 8px 0;
+	@media (min-width: 960px) {
+		font-size: 2.25rem;
+	}
+}
+.contribute-oss-stat-label {
+	font-size: 0.875rem;
+	color: #6B7990;
+	margin: 0;
+}
 .contribute-cards {
 	list-style: none;
 	padding: 0;
@@ -591,3 +679,21 @@
 // Other vendor styles
 // @import "syntax-highlighting/cld";
 @import "syntax-highlighting/bw";
+
+// After UIkit — section header spacing (2:1 top:bottom, title closer to content below)
+.uk-section.section-power-features,
+.uk-section.section-community {
+	padding-top: 0;
+	padding-bottom: 40px;
+	@media (min-width: 960px) {
+		padding-bottom: 70px;
+	}
+}
+.section-home-header {
+	--section-header-pad-bottom: 32px;
+	padding-top: calc(var(--section-header-pad-bottom) * 2);
+	padding-bottom: var(--section-header-pad-bottom);
+	@media (min-width: 960px) {
+		--section-header-pad-bottom: 40px;
+	}
+}
